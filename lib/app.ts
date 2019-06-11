@@ -2,6 +2,7 @@ import * as express from 'express';
 import * as mongoose from 'mongoose';
 const bodyParser = require('body-parser');
 const path = require('path');
+const cors = require('cors');
 
 import FileRoutes from './routes/FileRoutes';
 
@@ -26,6 +27,7 @@ class App {
         extended: true
       })
     );
+    this.app.use(cors({ optionSuccessStatus: 200 }));
     this.app.use(bodyParser.json());
 
     this.app.use(express.static(path.join(__dirname, '..', 'public')));
